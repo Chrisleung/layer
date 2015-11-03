@@ -60,16 +60,16 @@ layer.tab = function(options){
             }
             return str;
         }(),
-        content: '<ul class="layui-layer-tabmain">'+ function(){
-            var len = tab.length, ii = 1, str = '';
+        content:function(){
+            var len = tab.length, ii = 1, tabmain=$('<ul class="layui-layer-tabmain"></ul>');
             if(len > 0){
-                str = '<li class="layui-layer-tabli xubox_tab_layer">'+ (tab[0].content || 'no content') +'</li>';
+                tabmain.append($('<li class="layui-layer-tabli xubox_tab_layer"></li>').append(tab[0].content));
                 for(; ii < len; ii++){
-                    str += '<li class="layui-layer-tabli">'+ (tab[ii].content || 'no  content') +'</li>';
+                    tabmain.append($('<li class="layui-layer-tabli"></li>').append(tab[ii].content));
                 }
             }
-            return str;
-        }() +'</ul>',
+            return tabmain;
+        }(),
         success: function(layero){
             var btn = layero.find('.layui-layer-title').children();
             var main = layero.find('.layui-layer-tabmain').children();

@@ -269,8 +269,10 @@ Class.pt.creat = function(){
                 $('body').append(html[1]);
             }() : function(){
                 if(!content.parents('.'+doms[0])[0]){
-                    content.show().addClass('layui-layer-wrap').wrap(html[1]);
-                    $('#'+ doms[0] + times).find('.'+doms[5]).before(titleHTML);
+                    content.show().addClass('layui-layer-wrap');
+                    var hl = $(html[1]);
+                    hl.find('.'+doms[5]).before(titleHTML).append(content);
+                    $('body').append(hl);
                 }
             }();
         }() : $('body').append(html[1]);
